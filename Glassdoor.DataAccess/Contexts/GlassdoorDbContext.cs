@@ -12,7 +12,7 @@ public class GlassdoorDbContext : DbContext
 {
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer("Server=localDB\\MSSQLLocalDb; Database=GlassdoorDB");
+        optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocaldb;Database=GlassdoorDB; Trusted_Connection=True;");
     }
     public DbSet<User> Users { get; set; }
     public DbSet<Address> Addresses { get; set; }

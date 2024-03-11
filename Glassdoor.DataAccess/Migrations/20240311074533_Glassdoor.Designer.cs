@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Glassdoor.DataAccess.Migrations
 {
     [DbContext(typeof(GlassdoorDbContext))]
-    [Migration("20240311050805_GlassDoorDb")]
-    partial class GlassDoorDb
+    [Migration("20240311074533_Glassdoor")]
+    partial class Glassdoor
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -106,6 +106,9 @@ namespace Glassdoor.DataAccess.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("UpdatedAt")
