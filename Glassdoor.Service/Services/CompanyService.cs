@@ -17,10 +17,9 @@ public class CompanyService : ICompany
     private Repository<Company> repository;
     private GlassdoorDbContext context;
     private List<Company> companies;
-    public CompanyService(GlassdoorDbContext context)
+    public CompanyService(Repository<Company> repository)
     {
-        this.context = context;
-        this.repository = new Repository<Company>(context);
+        this.repository = repository;
         this.companies = repository.SelectAllAsEnumerable().ToList();
     }
 

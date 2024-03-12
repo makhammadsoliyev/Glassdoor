@@ -10,12 +10,10 @@ namespace Glassdoor.Service.Services;
 public class JobService : IJob
 {
     private Repository<Job> repository;
-    private GlassdoorDbContext context;
     private List<Job> jobs;
-    public JobService(GlassdoorDbContext context)
+    public JobService(Repository<Job> repository)
     {
-        this.context = context;
-        this.repository = new Repository<Job>(context);
+        this.repository = repository;
         this.jobs = repository.SelectAllAsEnumerable().ToList();
     }
     public async Task<JobViewModel> CreateAsync(JobCreateModel model)
