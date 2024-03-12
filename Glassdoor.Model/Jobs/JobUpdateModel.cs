@@ -1,4 +1,6 @@
-﻿namespace Glassdoor.Model.Jobs;
+﻿using Glassdoor.Domain.Enums;
+
+namespace Glassdoor.Model.Jobs;
 
 public class JobUpdateModel
 {
