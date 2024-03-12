@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Glassdoor.Domain\Glassdoor.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
