@@ -1,4 +1,10 @@
-﻿namespace Glassdoor.Service.Extensions;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Glassdoor.Service.Extensions;
 
 public static class MapperExtension
 {
@@ -23,18 +29,19 @@ public static class MapperExtension
         return dto;
     }
 
-    public static List<T> MapTo<T>(this IEnumerable<object> objs) where T : class, new()
+    public static IEnumerable<T> MapTo<T>(this IEnumerable<object> values) where T : class, new()
     {
         var result = new List<T>();
 
-        var dto = new T();
-        var dtoType = dto.GetType();
-        var dtoProperties = dtoType.GetProperties();
 
-        foreach (var obj in objs)
+        foreach (var obj in values)
         {
             var objType = obj.GetType();
             var objProperties = objType.GetProperties();
+
+            var dto = new T();
+            var dtoType = dto.GetType();
+            var dtoProperties = dtoType.GetProperties();
 
             foreach (var objProperty in objProperties)
             {
@@ -45,8 +52,10 @@ public static class MapperExtension
                     dtoProperty.SetValue(dto, value);
                 }
             }
+
             result.Add(dto);
         }
+
         return result;
     }
 }
