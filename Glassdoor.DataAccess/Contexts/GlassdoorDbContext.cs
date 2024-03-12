@@ -10,4 +10,5 @@ public class GlassdoorDbContext : DbContext
         var connectionString = $"Host={Constants.HOST};Port={Constants.PORT};Database={Constants.DATABASE};User Id={Constants.USER};Password={Constants.PASSWORD};";
         optionsBuilder.UseNpgsql(connectionString);
     }
+    public DbSet<User> Users { get; set; }
 }

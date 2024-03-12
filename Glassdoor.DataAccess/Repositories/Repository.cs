@@ -28,6 +28,8 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : Auditabl
 
     public async Task<TEntity> DeleteAsync(TEntity entity)
     {
+        entity.IsDeleted = true;
+        entity.DeletedAt = DateTime.UtcNow;
         return await Task.FromResult(entities.Remove(entity).Entity);
     }
 
@@ -48,7 +50,7 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : Auditabl
         return entities.Where(entity => !entity.IsDeleted).AsQueryable();
     }
 
-    public async Task SaveChanges()
+    public async Task SaveChangesAsync()
     {
         await context.SaveChangesAsync();
     }
