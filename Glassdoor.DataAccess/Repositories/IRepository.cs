@@ -16,5 +16,5 @@ public interface IRepository<TEntity> where TEntity : Auditable
     Task<TEntity> SelectByIdAsync(long id);
     IEnumerable<TEntity> SelectAllAsEnumerable();
     IQueryable<TEntity> SelectAllAsQueryable();
-    Task SaveChanges();
+    Task SaveChangesAsync();
 }
