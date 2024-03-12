@@ -1,9 +1,6 @@
-﻿using Glassdoor.Domain.Enums;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Glassdoor.Domain.Entities;
+using Glassdoor.Domain.Enums;
+using Glassdoor.Model.Companies;
 
 namespace Glassdoor.Model.Jobs;
 
@@ -14,4 +11,6 @@ public class JobViewModel
     public string Description { get; set; }
     public string SalarRange { get; set; }
     public JobStatusEnum Status { get; set; }
+    public CompanyViewModel Company { get; set; }
+    public IEnumerable<Application> Applications { get; set; }
 }

@@ -1,14 +1,8 @@
-﻿using Glassdoor.Domain.Entities.Jobs;
-using Glassdoor.Model.Jobs;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Glassdoor.Model.Jobs;
 
 namespace Glassdoor.Service.Interfaces;
 
-public interface IJob
+public interface IJobService
 {
     Task<JobViewModel> CreateAsync(JobCreateModel model);
     Task<JobViewModel> UpdateAsync(long id, JobUpdateModel model);
