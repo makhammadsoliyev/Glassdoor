@@ -1,5 +1,4 @@
-﻿using Glassdoor.DataAccess.Contexts;
-using Glassdoor.DataAccess.Repositories;
+﻿using Glassdoor.DataAccess.Repositories;
 using Glassdoor.Domain.Entities;
 using Glassdoor.Model.Jobs;
 using Glassdoor.Service.Extensions;
@@ -7,7 +6,7 @@ using Glassdoor.Service.Interfaces;
 
 namespace Glassdoor.Service.Services;
 
-public class JobService : IJob
+public class JobService : IJobService
 {
     private Repository<Job> repository;
     private List<Job> jobs;
@@ -20,7 +19,7 @@ public class JobService : IJob
     {
         jobs.Add(model.MapTo<Job>());
         await repository.InsertAsync(repository.MapTo<Job>());
-        await repository.SaveChanges();  
+        await repository.SaveChanges();
         return await Task.FromResult(model.MapTo<JobViewModel>());
     }
 

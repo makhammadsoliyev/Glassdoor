@@ -1,10 +1,4 @@
-﻿using Glassdoor.Domain.Entities.Companies;
-using Glassdoor.Model.Companies;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Glassdoor.Model.Companies;
 
 namespace Glassdoor.Service.Interfaces;
 

@@ -1,4 +1,6 @@
-﻿namespace Glassdoor.Model.UserModels;
+﻿using Glassdoor.Model.Applications;
+
+namespace Glassdoor.Model.UserModels;
 
 public class UserViewModel
 {
@@ -7,4 +9,5 @@ public class UserViewModel
     public string LastName { get; set; }
     public string Phone { get; set; }
     public string Address { get; set; }
+    public IEnumerable<ApplicationViewModel> Applications { get; set; }
 }
