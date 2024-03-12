@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Glassdoor.Domain.Entities.Jobs;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,4 +13,5 @@ public class CompanyUpdateModel
     public string Name { get; set; }
     public string Phone { get; set; }
     public string Address { get; set; }
+    public JobCreateModel Job { get; set; }
 }
