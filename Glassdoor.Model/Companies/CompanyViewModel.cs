@@ -5,7 +5,7 @@ using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Glassdoor.Domain.Entities.Companies;
+namespace Glassdoor.Model.Companies;
 
 public class CompanyViewModel
 {

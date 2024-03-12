@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Glassdoor.DataAccess\Glassdoor.DataAccess.csproj" />
     <ProjectReference Include="..\Glassdoor.Domain\Glassdoor.Domain.csproj" />
+    <ProjectReference Include="..\Glassdoor.Model\Glassdoor.Model.csproj" />
   </ItemGroup>
 
 </Project>

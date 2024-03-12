@@ -1,6 +1,7 @@
 ﻿using Glassdoor.DataAccess.Contexts;
 using Glassdoor.DataAccess.Repositories;
-using Glassdoor.Domain.Entities.Companies;
+using Glassdoor.Domain.Entities;
+using Glassdoor.Model.Companies;
 using Glassdoor.Service.Extensions;
 using Glassdoor.Service.Interfaces;
 using System;
@@ -22,6 +23,7 @@ public class CompanyService : ICompany
         this.repository = new Repository<Company>(context);
         this.companies = repository.SelectAllAsEnumerable().ToList();
     }
+
     public async Task<CompanyViewModel> CreateAsync(CompanyCreateModel model)
     {
         var exist = companies.FirstOrDefault(company => company.Phone == model.Phone)

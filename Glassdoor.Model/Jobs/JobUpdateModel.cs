@@ -1,14 +1,13 @@
-﻿using Glassdoor.Domain.Commons;
-using Glassdoor.Domain.Enums;
+﻿using Glassdoor.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Glassdoor.Domain.Entities.Jobs;
+namespace Glassdoor.Model.Jobs;
 
-public class JobCreateModel
+public class JobUpdateModel
 {
     public string Name { get; set; }
     public string Description { get; set; }

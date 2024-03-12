@@ -1,4 +1,5 @@
 ﻿using Glassdoor.Domain.Entities.Jobs;
+using Glassdoor.Model.Jobs;
 using System;
 using System.Collections.Generic;
 using System.Linq;

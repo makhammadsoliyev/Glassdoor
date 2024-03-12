@@ -1,15 +1,9 @@
 ﻿using Glassdoor.DataAccess.Contexts;
 using Glassdoor.DataAccess.Repositories;
-using Glassdoor.Domain.Entities.Companies;
-using Glassdoor.Domain.Entities.Jobs;
+using Glassdoor.Domain.Entities;
+using Glassdoor.Model.Jobs;
 using Glassdoor.Service.Extensions;
 using Glassdoor.Service.Interfaces;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Storage.Internal.Mapping;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Glassdoor.Service.Services;
 

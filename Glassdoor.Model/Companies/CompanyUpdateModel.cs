@@ -1,17 +1,17 @@
-﻿using Glassdoor.Domain.Commons;
-using Glassdoor.Domain.Entities.Jobs;
+﻿using Glassdoor.Model.Jobs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Glassdoor.Domain.Entities.Companies;
+namespace Glassdoor.Model.Companies;
 
-public class Company : Auditable
+public class CompanyUpdateModel
 {
+    public long Id { get; set; }
     public string Name { get; set; }
     public string Phone { get; set; }
     public string Address { get; set; }
-    public ICollection<Job> Jobs { get; set; }
+    public JobCreateModel Job { get; set; }
 }

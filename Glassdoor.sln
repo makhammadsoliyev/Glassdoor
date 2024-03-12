@@ -3,15 +3,18 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glassdoor.Presentation", "Glassdoor.Presentation\Glassdoor.Presentation.csproj", "{C6A935A5-43CE-4667-81A9-E333E7D6211D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Glassdoor.Presentation", "Glassdoor.Presentation\Glassdoor.Presentation.csproj", "{C6A935A5-43CE-4667-81A9-E333E7D6211D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glassdoor.Model", "Glassdoor.Model\Glassdoor.Model.csproj", "{3F738328-88A0-445E-8418-F62CDF553770}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Glassdoor.Model", "Glassdoor.Model\Glassdoor.Model.csproj", "{3F738328-88A0-445E-8418-F62CDF553770}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glassdoor.Service", "Glassdoor.Service\Glassdoor.Service.csproj", "{E2382AFC-AF21-437E-AF35-F14C0AB8BBE0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Glassdoor.Service", "Glassdoor.Service\Glassdoor.Service.csproj", "{E2382AFC-AF21-437E-AF35-F14C0AB8BBE0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3F738328-88A0-445E-8418-F62CDF553770} = {3F738328-88A0-445E-8418-F62CDF553770}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glassdoor.Domain", "Glassdoor.Domain\Glassdoor.Domain.csproj", "{81CAC02A-1A81-424A-AB8F-AE41A6575AEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Glassdoor.Domain", "Glassdoor.Domain\Glassdoor.Domain.csproj", "{81CAC02A-1A81-424A-AB8F-AE41A6575AEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Glassdoor.DataAccess", "Glassdoor.DataAccess\Glassdoor.DataAccess.csproj", "{59ACEB71-0F4A-42C6-9107-7EC10B63DFF2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Glassdoor.DataAccess", "Glassdoor.DataAccess\Glassdoor.DataAccess.csproj", "{59ACEB71-0F4A-42C6-9107-7EC10B63DFF2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
