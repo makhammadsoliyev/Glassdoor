@@ -1,11 +1,5 @@
-﻿using Glassdoor.DataAccess.Configurations;
-using Glassdoor.Domain.Entities;
+using Glassdoor.DataAccess.Configurations;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Glassdoor.DataAccess.Contexts;
 
