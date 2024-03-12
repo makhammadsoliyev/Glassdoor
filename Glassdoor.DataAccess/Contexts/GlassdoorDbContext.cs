@@ -1,4 +1,4 @@
-﻿using Glassdoor.DataAccess.Configurations;
+using Glassdoor.DataAccess.Configurations;
 using Microsoft.EntityFrameworkCore;
 
 namespace Glassdoor.DataAccess.Contexts;
