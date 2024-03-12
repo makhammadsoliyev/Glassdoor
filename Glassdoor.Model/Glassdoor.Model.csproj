@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
   </PropertyGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\Glassdoor.Domain\Glassdoor.Domain.csproj" />
