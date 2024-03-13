@@ -1,5 +1,4 @@
-﻿using Glassdoor.Domain.Entities;
-using Glassdoor.Model.Jobs;
+﻿using Glassdoor.Model.Jobs;
 
 namespace Glassdoor.Model.Companies;
 
