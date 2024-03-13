@@ -2,8 +2,9 @@
 
 namespace Glassdoor.Model.UserModels;
 
-public class UserCreateModel : Auditable
+public class UserCreateModel
 {
+    public long Id { get; set; }
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string Phone { get; set; }
