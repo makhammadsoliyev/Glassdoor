@@ -2,9 +2,10 @@
 
 namespace Glassdoor.Service.Interfaces;
 
-public interface ICompany
+public interface ICompanyService
 {
-    Task<CompanyViewModel> CreateAsync(CompanyCreateModel model);
+    Task<CompanyViewModel> LogInAsync(string phone, string password);
+    Task<CompanyViewModel> RegisterAsync(CompanyCreateModel model);
     Task<CompanyViewModel> UpdateAsync(long id, CompanyUpdateModel model);
     Task<bool> DeleteAsync(long id);
     Task<CompanyViewModel> GetByIdAsync(long id);
