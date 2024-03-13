@@ -1,16 +1,14 @@
 ﻿using Glassdoor.Domain.Entities;
-using Glassdoor.Model.Applications;
-using Glassdoor.Model.UserModels;
 
 namespace Glassdoor.Service.Interfaces;
 
 public interface IUserService
 {
-    Task<UserViewModel> RegisterAsync(UserCreateModel user);
+    Task<User> RegisterAsync(User user);
     Task<bool> DeleteAsync(long id);
-    Task<UserViewModel> UpdateAsync(long id, UserUpdateModel user);
-    Task<UserViewModel> LoginAsync(string phone, string password);
-    Task<IEnumerable<UserViewModel>> GetAllAsync();
-    Task<UserViewModel> GetByIdAsync(long id);
-    Task<IEnumerable<ApplicationViewModel>> GetAllApplications(long id);
+    Task<User> UpdateAsync(long id, User user);
+    Task<User> LoginAsync(string phone, string password);
+    Task<IEnumerable<User>> GetAllAsync();
+    Task<User> GetByIdAsync(long id);
+    Task<IEnumerable<Application>> GetAllApplications(long id);
 }

@@ -1,11 +1,11 @@
-﻿using Glassdoor.Model.Applications;
+﻿using Glassdoor.Domain.Entities;
 
 namespace Glassdoor.Service.Interfaces;
 
 public interface IApplicationService
 {
-    Task<ApplicationViewModel> CreateAsync(ApplicationCreateModel application);
+    Task<Application> CreateAsync(Application application);
     Task<bool> DeleteAsync(long id);
-    Task<ApplicationViewModel> GetByIdAsyncAsync(long id);
-    Task<IEnumerable<ApplicationViewModel>> GetAllAsync();
+    Task<Application> GetByIdAsyncAsync(long id);
+    Task<IEnumerable<Application>> GetAllAsync();
 }

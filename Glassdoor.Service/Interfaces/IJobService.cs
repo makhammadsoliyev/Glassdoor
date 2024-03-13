@@ -1,12 +1,12 @@
-﻿using Glassdoor.Model.Jobs;
+﻿using Glassdoor.Domain.Entities;
 
 namespace Glassdoor.Service.Interfaces;
 
 public interface IJobService
 {
-    Task<JobViewModel> CreateAsync(JobCreateModel model);
-    Task<JobViewModel> UpdateAsync(long id, JobUpdateModel model);
+    Task<Job> CreateAsync(Job model);
+    Task<Job> UpdateAsync(long id, Job model);
     Task<bool> DeleteAsync(long id);
-    Task<JobViewModel> GetByIdAsync(long id);
-    Task<IEnumerable<JobViewModel>> GetAllAsync();
+    Task<Job> GetByIdAsync(long id);
+    Task<IEnumerable<Job>> GetAllAsync();
 }

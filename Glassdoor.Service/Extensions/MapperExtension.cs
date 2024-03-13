@@ -16,8 +16,12 @@ public static class MapperExtension
             if (dtoProperties.Any(p => p.Name == objProperty.Name))
             {
                 var dtoProperty = dtoType.GetProperty(objProperty.Name);
-                var value = objProperty.GetValue(obj);
-                dtoProperty.SetValue(dto, value);
+
+                if (dtoProperty.PropertyType == objProperty.PropertyType)
+                {
+                    var value = objProperty.GetValue(obj);
+                    dtoProperty.SetValue(dto, value);
+                }
             }
         }
         return dto;
@@ -42,8 +46,12 @@ public static class MapperExtension
                 if (dtoProperties.Any(p => p.Name == objProperty.Name))
                 {
                     var dtoProperty = dtoType.GetProperty(objProperty.Name);
-                    var value = objProperty.GetValue(obj);
-                    dtoProperty.SetValue(dto, value);
+
+                    if (dtoProperty.PropertyType == objProperty.PropertyType)
+                    {
+                        var value = objProperty.GetValue(obj);
+                        dtoProperty.SetValue(dto, value);
+                    }
                 }
             }
 

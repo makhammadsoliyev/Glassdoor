@@ -5,15 +5,7 @@ VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Glassdoor.Presentation", "Glassdoor.Presentation\Glassdoor.Presentation.csproj", "{C6A935A5-43CE-4667-81A9-E333E7D6211D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Glassdoor.Model", "Glassdoor.Model\Glassdoor.Model.csproj", "{3F738328-88A0-445E-8418-F62CDF553770}"
-	ProjectSection(ProjectDependencies) = postProject
-		{81CAC02A-1A81-424A-AB8F-AE41A6575AEC} = {81CAC02A-1A81-424A-AB8F-AE41A6575AEC}
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Glassdoor.Service", "Glassdoor.Service\Glassdoor.Service.csproj", "{E2382AFC-AF21-437E-AF35-F14C0AB8BBE0}"
-	ProjectSection(ProjectDependencies) = postProject
-		{3F738328-88A0-445E-8418-F62CDF553770} = {3F738328-88A0-445E-8418-F62CDF553770}
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Glassdoor.Domain", "Glassdoor.Domain\Glassdoor.Domain.csproj", "{81CAC02A-1A81-424A-AB8F-AE41A6575AEC}"
 EndProject
@@ -29,10 +21,6 @@ Global
 		{C6A935A5-43CE-4667-81A9-E333E7D6211D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6A935A5-43CE-4667-81A9-E333E7D6211D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6A935A5-43CE-4667-81A9-E333E7D6211D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3F738328-88A0-445E-8418-F62CDF553770}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3F738328-88A0-445E-8418-F62CDF553770}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3F738328-88A0-445E-8418-F62CDF553770}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3F738328-88A0-445E-8418-F62CDF553770}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E2382AFC-AF21-437E-AF35-F14C0AB8BBE0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E2382AFC-AF21-437E-AF35-F14C0AB8BBE0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2382AFC-AF21-437E-AF35-F14C0AB8BBE0}.Release|Any CPU.ActiveCfg = Release|Any CPU

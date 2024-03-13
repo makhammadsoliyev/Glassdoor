@@ -1,6 +1,5 @@
 ﻿using Glassdoor.DataAccess.Repositories;
 using Glassdoor.Domain.Entities;
-using Glassdoor.Model.Jobs;
 using Glassdoor.Service.Extensions;
 using Glassdoor.Service.Interfaces;
 
@@ -15,12 +14,12 @@ public class JobService : IJobService
         this.repository = repository;
     }
 
-    public async Task<JobViewModel> CreateAsync(JobCreateModel model)
+    public async Task<Job> CreateAsync(Job model)
     {
         var result = await repository.InsertAsync(model.MapTo<Job>());
         await repository.SaveChangesAsync();
 
-        return result.MapTo<JobViewModel>();
+        return result.MapTo<Job>();
     }
 
     public async Task<bool> DeleteAsync(long id)
@@ -34,20 +33,20 @@ public class JobService : IJobService
         return true;
     }
 
-    public async Task<IEnumerable<JobViewModel>> GetAllAsync()
+    public async Task<IEnumerable<Job>> GetAllAsync()
     {
-        return await Task.FromResult(repository.SelectAllAsEnumerable().MapTo<JobViewModel>());
+        return await Task.FromResult(repository.SelectAllAsEnumerable().MapTo<Job>());
     }
 
-    public async Task<JobViewModel> GetByIdAsync(long id)
+    public async Task<Job> GetByIdAsync(long id)
     {
         var existJob = await repository.SelectByIdAsync(id)
             ?? throw new Exception($"Job with id : {id} is not found");
 
-        return existJob.MapTo<JobViewModel>();
+        return existJob.MapTo<Job>();
     }
 
-    public async Task<JobViewModel> UpdateAsync(long id, JobUpdateModel model)
+    public async Task<Job> UpdateAsync(long id, Job model)
     {
         var existJob = await repository.SelectByIdAsync(id)
             ?? throw new Exception($"Job with id : {id} is not found");
@@ -56,11 +55,11 @@ public class JobService : IJobService
         existJob.Name = model.Name;
         existJob.Description = model.Description;
         existJob.Status = model.Status;
-        existJob.SalaryRange = model.SalarRange;
+        existJob.SalaryRange = model.SalaryRange;
 
         await repository.UpdateAsync(existJob);
         await repository.SaveChangesAsync();
 
-        return existJob.MapTo<JobViewModel>();
+        return existJob.MapTo<Job>();
     }
 }

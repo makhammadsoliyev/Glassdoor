@@ -1,6 +1,4 @@
-﻿using Glassdoor.Model.Jobs;
-
-namespace Glassdoor.Model.Companies;
+﻿namespace Glassdoor.Model.Companies;
 
 public class CompanyUpdateModel
 {

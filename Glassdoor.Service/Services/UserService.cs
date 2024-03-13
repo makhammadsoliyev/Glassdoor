@@ -1,7 +1,5 @@
 ﻿using Glassdoor.DataAccess.Repositories;
 using Glassdoor.Domain.Entities;
-using Glassdoor.Model.Applications;
-using Glassdoor.Model.UserModels;
 using Glassdoor.Service.Extensions;
 using Glassdoor.Service.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -29,7 +27,7 @@ public class UserService : IUserService
         return true;
     }
 
-    public async Task<IEnumerable<ApplicationViewModel>> GetAllApplications(long id)
+    public async Task<IEnumerable<Application>> GetAllApplications(long id)
     {
         var users = repository.SelectAllAsQueryable();
         var existUser = users
@@ -37,39 +35,39 @@ public class UserService : IUserService
             .FirstOrDefault()
             ?? throw new Exception($"user is not found with id {id}");
 
-        return await Task.FromResult(existUser.Applications.MapTo<ApplicationViewModel>());
+        return await Task.FromResult(existUser.Applications.MapTo<Application>());
     }
 
-    public async Task<IEnumerable<UserViewModel>> GetAllAsync()
+    public async Task<IEnumerable<User>> GetAllAsync()
     {
-        return await Task.FromResult(repository.SelectAllAsEnumerable().MapTo<UserViewModel>());
+        return await Task.FromResult(repository.SelectAllAsEnumerable().MapTo<User>());
     }
 
-    public async Task<UserViewModel> GetByIdAsync(long id)
+    public async Task<User> GetByIdAsync(long id)
     {
         var existUser = await repository.SelectByIdAsync(id)
             ?? throw new Exception($"user is not found with id {id}");
 
-        return existUser.MapTo<UserViewModel>();
+        return existUser.MapTo<User>();
     }
 
-    public async Task<UserViewModel> LoginAsync(string phone, string password)
+    public async Task<User> LoginAsync(string phone, string password)
     {
         var exitUser = await repository.SelectAllAsQueryable().FirstOrDefaultAsync(user => user.Phone == phone && user.Password == password)
             ?? throw new Exception($"user is not found");
 
-        return exitUser.MapTo<UserViewModel>();
+        return exitUser.MapTo<User>();
     }
 
-    public async Task<UserViewModel> RegisterAsync(UserCreateModel user)
+    public async Task<User> RegisterAsync(User user)
     {
         var createdUser = await repository.InsertAsync(user.MapTo<User>());
         await repository.SaveChangesAsync();
 
-        return createdUser.MapTo<UserViewModel>();
+        return createdUser.MapTo<User>();
     }
 
-    public async Task<UserViewModel> UpdateAsync(long id, UserUpdateModel user)
+    public async Task<User> UpdateAsync(long id, User user)
     {
         var existUser = await repository.SelectByIdAsync(id)
             ?? throw new Exception($"user is not found with id {id}");
@@ -78,11 +76,11 @@ public class UserService : IUserService
         existUser.LastName = user.LastName;
         existUser.Password = user.Password;
         existUser.Address = user.Address;
-        existUser.Phone = user.Phone; 
+        existUser.Phone = user.Phone;
 
         var result = await repository.UpdateAsync(existUser);
         await repository.SaveChangesAsync();
 
-        return result.MapTo<UserViewModel>();
+        return result.MapTo<User>();
     }
 }
