@@ -4,69 +4,74 @@ using Glassdoor.Domain.Entities;
 using Glassdoor.Model.Companies;
 using Glassdoor.Service.Extensions;
 using Glassdoor.Service.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace Glassdoor.Service.Services;
 
-public class CompanyService : ICompany
+public class CompanyService : ICompanyService
 {
-    private Repository<Company> repository;
-    private GlassdoorDbContext context;
-    private List<Company> companies;
-    public CompanyService(Repository<Company> repository)
+    private readonly IRepository<Company> repository;
+    public CompanyService(IRepository<Company> repository)
     {
         this.repository = repository;
-        this.companies = repository.SelectAllAsEnumerable().ToList();
     }
 
-    public async Task<CompanyViewModel> CreateAsync(CompanyCreateModel model)
+    public async Task<CompanyViewModel> RegisterAsync(CompanyCreateModel model)
     {
-        var exist = companies.FirstOrDefault(company => company.Phone == model.Phone)
-            ?? throw new Exception($"Company with Phone {model.Phone} is always exists");
-
-        companies.Add(model.MapTo<Company>());
+        var existCompany = await repository.SelectAllAsQueryable().FirstOrDefaultAsync(company => company.Phone == model.Phone);
+        if (existCompany is not null) 
+            throw new Exception($"Company with Phone {model.Phone} is always exists");
+       
         await repository.InsertAsync(model.MapTo<Company>());
-        await repository.SaveChanges();
-        return await Task.FromResult(model.MapTo<CompanyViewModel>());
+        await repository.SaveChangesAsync();
+
+        return model.MapTo<CompanyViewModel>();
+    }
+
+    public async Task<CompanyViewModel> LogInAsync(string phone, string password)
+    {
+        var existCompany = await repository.SelectAllAsQueryable().FirstOrDefaultAsync(company => company.Phone == phone && company.Password == password)
+            ?? throw new Exception("Company was not found");
+      
+        return existCompany.MapTo<CompanyViewModel>();
     }
 
     public async Task<bool> DeleteAsync(long id)
     {
-        var exist = companies.FirstOrDefault(company => company.Id == id);
-        if (exist is null)
-            throw new Exception($"Company with id: {id} is not Found!");
+        var existCompany = await repository.SelectByIdAsync(id)
+            ?? throw new Exception($"Company with id: {id} is not Found!");
 
-        companies.Remove(exist);
-        await repository.DeleteAsync(exist);
-        await repository.SaveChanges();
+        await repository.DeleteAsync(existCompany);
+        await repository.SaveChangesAsync();
+
         return true;
     }
 
     public async Task<IEnumerable<CompanyViewModel>> GetAllAsync()
     {
-        return await Task.FromResult(companies.MapTo<CompanyViewModel>());
+        return await Task.FromResult(repository.SelectAllAsEnumerable().MapTo<CompanyViewModel>());
     }
 
     public async Task<CompanyViewModel> GetByIdAsync(long id)
     {
-        var exist = companies.FirstOrDefault(company => company.Id == id);
-        if (exist is null)
-            throw new Exception($"Company with id: {id} is not Found!");
+        var existCompany = await repository.SelectByIdAsync(id)
+            ?? throw new Exception($"Company with id: {id} is not Found!");
 
-        return await Task.FromResult(exist.MapTo<CompanyViewModel>());
+        return existCompany.MapTo<CompanyViewModel>();
     }
 
     public async Task<CompanyViewModel> UpdateAsync(long id, CompanyUpdateModel model)
     {
-        var exist = companies.FirstOrDefault(company => company.Id == id);
-        if (exist is null)
-            throw new Exception($"Company with id: {id} is not Found!");
+        var existCompany = await repository.SelectByIdAsync(id)
+            ?? throw new Exception($"Company with id: {id} is not Found!");
 
-        exist.Name = model.Name;
-        exist.Phone = model.Phone;
-        exist.Address = model.Address;
-        exist.UpdatedAt = DateTime.UtcNow;
-        await repository.UpdateAsync(exist);
-        await repository.SaveChanges();
-        return await Task.FromResult(exist.MapTo<CompanyViewModel>());
+        existCompany.Name = model.Name;
+        existCompany.Phone = model.Phone;
+        existCompany.Address = model.Address;
+        existCompany.UpdatedAt = DateTime.UtcNow;
+        await repository.UpdateAsync(existCompany);
+        await repository.SaveChangesAsync();
+
+        return existCompany.MapTo<CompanyViewModel>();
     }
 }

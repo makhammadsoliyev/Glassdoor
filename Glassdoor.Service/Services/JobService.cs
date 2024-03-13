@@ -8,29 +8,29 @@ namespace Glassdoor.Service.Services;
 
 public class JobService : IJobService
 {
-    private Repository<Job> repository;
-    private List<Job> jobs;
-    public JobService(Repository<Job> repository)
+    private readonly IRepository<Job> repository;
+
+    public JobService(IRepository<Job> repository)
     {
         this.repository = repository;
-        this.jobs = repository.SelectAllAsEnumerable().ToList();
     }
+
     public async Task<JobViewModel> CreateAsync(JobCreateModel model)
     {
-        jobs.Add(model.MapTo<Job>());
-        await repository.InsertAsync(repository.MapTo<Job>());
-        await repository.SaveChanges();
-        return await Task.FromResult(model.MapTo<JobViewModel>());
+        var result = await repository.InsertAsync(model.MapTo<Job>());
+        await repository.SaveChangesAsync();
+
+        return result.MapTo<JobViewModel>();
     }
 
     public async Task<bool> DeleteAsync(long id)
     {
-        var exist = jobs.FirstOrDefault(job => job.Id == id);
-        if (exist is null)
-            throw new Exception($"Job with id : {id} is not found");
+        var exist = await repository.SelectByIdAsync(id)
+            ?? throw new Exception($"Job with id : {id} is not found");
 
-        jobs.Remove(exist);
-        await repository.DeleteAsync(exist);
+        var result = await repository.DeleteAsync(exist);
+        await repository.SaveChangesAsync();
+
         return true;
     }
 
@@ -41,26 +41,26 @@ public class JobService : IJobService
 
     public async Task<JobViewModel> GetByIdAsync(long id)
     {
-        var exist = jobs.FirstOrDefault(job => job.Id == id);
-        if (exist is null)
-            throw new Exception($"Job with id : {id} is not found");
+        var existJob = await repository.SelectByIdAsync(id)
+            ?? throw new Exception($"Job with id : {id} is not found");
 
-        return await Task.FromResult(exist.MapTo<JobViewModel>());
+        return existJob.MapTo<JobViewModel>();
     }
 
     public async Task<JobViewModel> UpdateAsync(long id, JobUpdateModel model)
     {
-        var exist = jobs.FirstOrDefault(job => job.Id == id);
-        if (exist is null)
-            throw new Exception($"Job with id : {id} is not found");
+        var existJob = await repository.SelectByIdAsync(id)
+            ?? throw new Exception($"Job with id : {id} is not found");
 
-        exist.UpdatedAt = DateTime.UtcNow;
-        exist.Name = model.Name;
-        exist.Description = model.Description;
-        exist.Status = model.Status;
-        exist.SalarRange = model.SalarRange;
-        await repository.UpdateAsync(exist);
-        await repository.SaveChanges();
-        return await Task.FromResult(exist.MapTo<JobViewModel>());
+        existJob.UpdatedAt = DateTime.UtcNow;
+        existJob.Name = model.Name;
+        existJob.Description = model.Description;
+        existJob.Status = model.Status;
+        existJob.SalaryRange = model.SalarRange;
+
+        await repository.UpdateAsync(existJob);
+        await repository.SaveChangesAsync();
+
+        return existJob.MapTo<JobViewModel>();
     }
 }
